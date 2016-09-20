@@ -1,14 +1,14 @@
 #pragma once
-#ifndef LIFE_H
-#define LIFE_H
+#ifndef Health_H
+#define Health_H
 #include "GameObject.h"
 
 using namespace std;
 
-class Life : public GameObject
+class Health : public GameObject
 {
 public:
-	Life(int pos);
+	Health(int pos);
 	void draw();
 private:
 	void init();

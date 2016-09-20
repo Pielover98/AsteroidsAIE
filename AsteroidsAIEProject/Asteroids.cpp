@@ -5,13 +5,13 @@
 #endif
 
 #include "Asteroid.h"
-#include "AlienSpaceShip.h"
+#include "Enemy.h"
 #include "PlayerSpaceShip.h"
 #include "GameObject.h"
-#include "GlobalAsteroidVariables.h"
+#include "GlobalVariables.h"
 #include "BackGround.h"
 #include "Level.h"
-#include "Intro.h"
+#include "IntroScreen.h"
 #include "Stars.h"
 #include <time.h> 
 #include <string.h>
@@ -188,12 +188,12 @@ void main(int argc, char *argv[])
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
 
 
-	glutCreateWindow("Asteroids Part 2");
+	glutCreateWindow("Asteroids by Xavier");
 
 
 	
 	player = shared_ptr<PlayerSpaceShip>(new PlayerSpaceShip());
-	level = shared_ptr<Intro>(new Intro());
+	level = shared_ptr<IntroScreen>(new IntroScreen());
 
 	glutDisplayFunc(display_obj);	
 

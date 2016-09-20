@@ -156,40 +156,40 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="AlienSpaceShip.h" />
+    <ClInclude Include="Enemy.h" />
     <ClInclude Include="Asteroid.h" />
     <ClInclude Include="BackGround.h" />
-    <ClInclude Include="Collisions.h" />
-    <ClInclude Include="Explosion.h" />
+    <ClInclude Include="Collide.h" />
+    <ClInclude Include="Explode.h" />
     <ClInclude Include="GameObject.h" />
-    <ClInclude Include="GlobalAsteroidVariables.h" />
-    <ClInclude Include="Intro.h" />
+    <ClInclude Include="GlobalVariables.h" />
+    <ClInclude Include="IntroScreen.h" />
     <ClInclude Include="Level.h" />
-    <ClInclude Include="Life.h" />
+    <ClInclude Include="Health.h" />
     <ClInclude Include="Movement.h" />
     <ClInclude Include="Particle.h" />
     <ClInclude Include="PlayerSpaceShip.h" />
     <ClInclude Include="Score.h" />
     <ClInclude Include="Shot.h" />
-    <ClInclude Include="ShotExplosion.h" />
+    <ClInclude Include="ShotExplode.h" />
     <ClInclude Include="ShotParticle.h" />
     <ClInclude Include="Stars.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="AlienSpaceShip.cpp" />
+    <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Asteroid.cpp" />
     <ClCompile Include="Asteroids.cpp" />
-    <ClCompile Include="Collisions.cpp" />
-    <ClCompile Include="Explosion.cpp" />
-    <ClCompile Include="Intro.cpp" />
+    <ClCompile Include="Collide.cpp" />
+    <ClCompile Include="Explode.cpp" />
+    <ClCompile Include="IntroScreen.cpp" />
     <ClCompile Include="Level.cpp" />
-    <ClCompile Include="Life.cpp" />
+    <ClCompile Include="Health.cpp" />
     <ClCompile Include="Movement.cpp" />
     <ClCompile Include="Particle.cpp" />
     <ClCompile Include="PlayerSpaceShip.cpp" />
     <ClCompile Include="Score.cpp" />
     <ClCompile Include="Shot.cpp" />
-    <ClCompile Include="ShotExplosion.cpp" />
+    <ClCompile Include="ShotExplode.cpp" />
     <ClCompile Include="ShotParticle.cpp" />
     <ClCompile Include="Stars.cpp" />
   </ItemGroup>

@@ -1,6 +1,6 @@
-#include "AlienSpaceShip.h"
+#include "Enemy.h"
 #include "GameObject.h"
-#include "GlobalAsteroidVariables.h"
+#include "GlobalVariables.h"
 
 #ifdef _M_IX86
 #include <windows.h>
@@ -17,7 +17,7 @@
 
 using namespace std;
 
-AlienSpaceShip::AlienSpaceShip()
+Enemy::Enemy()
 {
 	is_small = false;
 	alive = false;
@@ -48,7 +48,7 @@ AlienSpaceShip::AlienSpaceShip()
 	init();
 }
 
-AlienSpaceShip::AlienSpaceShip(bool is_small_now)
+Enemy::Enemy(bool is_small_now)
 {
 	is_small = is_small_now;
 	alive = false;
@@ -91,7 +91,7 @@ AlienSpaceShip::AlienSpaceShip(bool is_small_now)
 	init();
 }
 
-void AlienSpaceShip::update(long count, long points, int asteroids)
+void Enemy::update(long count, long points, int asteroids)
 {
 	if (alive)
 	{
@@ -160,7 +160,7 @@ void AlienSpaceShip::update(long count, long points, int asteroids)
 	time++;
 }
 
-void AlienSpaceShip::init()
+void Enemy::init()
 {
 	GLfloat materialA[] = { 0.329412, 0.329412, 0.329412, 0 };
 	GLfloat materialB[] = { 0.309804, 0.309804, 0.184314, 0 };
@@ -188,7 +188,7 @@ void AlienSpaceShip::init()
 	glEndList();
 }
 
-void AlienSpaceShip::draw()
+void Enemy::draw()
 {
 	if (alive)
 	{

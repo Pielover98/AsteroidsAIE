@@ -9,7 +9,7 @@
 #include <GL/glu.h>
 #include <freeglut.h>
 
-#include "GlobalAsteroidVariables.h"
+#include "GlobalVariables.h"
 
 Stars::Stars(int nam)
 {

@@ -3,7 +3,7 @@
 #define MOVEMENT_H
 #include "GameObject.h"
 #include "PlayerSpaceShip.h"
-#include "AlienSpaceShip.h"
+#include "Enemy.h"
 #include <memory>
 
 using namespace std;
@@ -17,7 +17,7 @@ public:
 	void rotate(shared_ptr<PlayerSpaceShip> object);
 	void move(shared_ptr<GameObject> object);
 	void move(shared_ptr<PlayerSpaceShip> object);
-	void move(shared_ptr<AlienSpaceShip> object);
+	void move(shared_ptr<Enemy> object);
 };
 
 #endif

@@ -1,8 +1,8 @@
 #pragma once
-#ifndef COLLISIONS_H
-#define COLLISIONS_H
+#ifndef Collide_H
+#define Collide_H
 
-#include "AlienSpaceShip.h"
+#include "Enemy.h"
 #include "Asteroid.h"
 #include "PlayerSpaceShip.h"
 #include "Shot.h"
@@ -10,16 +10,16 @@
 
 using namespace std;
 
-class Collisions
+class Collide
 {
 public:
-	Collisions();
+	Collide();
 	bool shotAndAsteroid(shared_ptr<Asteroid> asteroid, shared_ptr<Shot> shot);
 	bool shipAndAsteroid(shared_ptr<Asteroid> asteroid, shared_ptr<PlayerSpaceShip> playerShip);
-	bool shipAndAsteroid(shared_ptr<Asteroid> asteroid, shared_ptr<AlienSpaceShip> alienShip);
+	bool shipAndAsteroid(shared_ptr<Asteroid> asteroid, shared_ptr<Enemy> alienShip);
 	bool shotAndShip(shared_ptr<Shot> shot, shared_ptr<PlayerSpaceShip> ship);
-	bool shotAndShip(shared_ptr<Shot> shot, shared_ptr<AlienSpaceShip> ship);
-	bool shipAndShip(shared_ptr<PlayerSpaceShip> player, shared_ptr<AlienSpaceShip> alien);
+	bool shotAndShip(shared_ptr<Shot> shot, shared_ptr<Enemy> ship);
+	bool shipAndShip(shared_ptr<PlayerSpaceShip> player, shared_ptr<Enemy> alien);
 	float dist(float xOne, float xTwo, float yOne, float yTwo);
 private:
 	bool intersect(float xOne, float xTwo, float yOne, float yTwo, float xCenter, float yCenter, float radius);

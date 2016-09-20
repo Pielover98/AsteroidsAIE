@@ -1,4 +1,4 @@
-#include "Explosion.h"
+#include "Explode.h"
 
 #ifdef _M_IX86
 #include <windows.h>
@@ -9,7 +9,7 @@
 #include <GL/gl.h>
 #include <GL/glu.h>
 #include <freeglut.h>
-#include "GlobalAsteroidVariables.h"
+#include "GlobalVariables.h"
 #include "Movement.h"
 #include "Particle.h"
 #include <list>
@@ -18,7 +18,7 @@
 
 using namespace std;
 
-Explosion::Explosion(float X, float Y, float xVel, float yVel, float red, float green, float blue)
+Explode::Explode(float X, float Y, float xVel, float yVel, float red, float green, float blue)
 {
 	angle = 0.0f;
 	angleX = 0.0f;
@@ -34,7 +34,7 @@ Explosion::Explosion(float X, float Y, float xVel, float yVel, float red, float 
 	velocityX = 0;
 	velocityY = 0;
 
-	life = 0;
+	Health = 0;
 
 	for (int i = 0; i < PARTICLE_COUNT; i++)
 	{
@@ -42,16 +42,16 @@ Explosion::Explosion(float X, float Y, float xVel, float yVel, float red, float 
 	}
 }
 
-void Explosion::draw()
+void Explode::draw()
 {
 	Movement mover = Movement();
 
 	for each(shared_ptr<GameObject> part in particles)
 	{
-		part->count = life;
+		part->count = Health;
 		glPushMatrix();
 
-		if (life > MAX_EXPLOSION_LIFE / 4)
+		if (Health > MAX_Explode_Health / 4)
 		{
 			glEnable(GL_BLEND);
 			glBlendFunc(GL_SRC_COLOR, GL_ONE_MINUS_SRC_ALPHA);

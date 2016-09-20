@@ -1,4 +1,4 @@
-#include "Intro.h"
+#include "IntroScreen.h"
 
 #ifdef _M_IX86
 #include <windows.h>
@@ -6,7 +6,7 @@
 #include <stream.h>
 #endif
 
-#include "GlobalAsteroidVariables.h"
+#include "GlobalVariables.h"
 #include "BackGround.h"
 #include "Stars.h"
 #include <string.h>
@@ -18,7 +18,7 @@
 
 using namespace std;
 
-Intro::Intro()
+IntroScreen::IntroScreen()
 {
 	lives = 3;
 	game_over = false;
@@ -31,11 +31,11 @@ Intro::Intro()
 	stars = shared_ptr<Stars>(new Stars());
 }
 
-void Intro::makeShot()
+void IntroScreen::makeShot()
 {
 }
 
-void Intro::draw()
+void IntroScreen::draw()
 {
 	stars->draw();
 
@@ -96,6 +96,6 @@ void Intro::draw()
 	glMaterialfv(GL_FRONT, GL_EMISSION, none);
 }
 
-void Intro::update()
+void IntroScreen::update()
 {
 }

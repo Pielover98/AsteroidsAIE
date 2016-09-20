@@ -2,12 +2,12 @@
 #ifndef LEVEL_H
 #define LEVEL_H
 #include "GameObject.h"
-#include "Collisions.h"
+#include "Collide.h"
 #include "PlayerSpaceShip.h"
-#include "Explosion.h"
-#include "AlienSpaceShip.h"
+#include "Explode.h"
+#include "Enemy.h"
 #include "BackGround.h"
-#include "Life.h"
+#include "Health.h"
 #include "Movement.h"
 #include "Score.h"
 #include "Shot.h"
@@ -24,17 +24,17 @@ public:
 	~Level();
 	void draw();
 	void update();
-	void removeLife();
+	void removeHealth();
 	void makeShot();
 private:
 	list<shared_ptr<GameObject>> objects;
 	list<shared_ptr<Shot>> pshots;
 	list<shared_ptr<Shot>> ashots;
-	list<shared_ptr<Explosion>> explosions;
+	list<shared_ptr<Explode>> Explodes;
 	shared_ptr<PlayerSpaceShip> playerShip;
-	shared_ptr<AlienSpaceShip> alienShip;
+	shared_ptr<Enemy> alienShip;
 	Movement mover;
-	Collisions collider;
+	Collide collider;
 	int deadCount;
 	void makeAlienShot();
 	float getAngle(float x, float y);

@@ -7,7 +7,7 @@
 #include <stream.h>
 #endif
 
-#include "GlobalAsteroidVariables.h"
+#include "GlobalVariables.h"
 #include <iostream>
 #include <math.h>
 #include <string.h>
@@ -105,7 +105,7 @@ void ShotParticle::draw()
 {
 
 	
-	float alpha = 1 - count / MAX_EXPLOSION_LIFE;
+	float alpha = 1 - count / MAX_Explode_Health;
 
 	GLfloat ambientMaterial[] = { red, green, blue, alpha };
 	GLfloat difuseMaterial[] = { red, green, blue, alpha };

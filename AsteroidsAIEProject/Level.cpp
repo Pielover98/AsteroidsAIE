@@ -4,15 +4,15 @@
 #include <stream.h>
 #endif
 
-#include "Explosion.h"
-#include "ShotExplosion.h"
+#include "Explode.h"
+#include "ShotExplode.h"
 #include "Asteroid.h"
-#include "AlienSpaceShip.h"
+#include "Enemy.h"
 #include "PlayerSpaceShip.h"
 #include "GameObject.h"
 #include "Movement.h"
-#include "Collisions.h"
-#include "GlobalAsteroidVariables.h"
+#include "Collide.h"
+#include "GlobalVariables.h"
 #include "BackGround.h"
 #include "Shot.h"
 #include "Score.h"
@@ -32,8 +32,8 @@ Level::Level()
 {
 	mover = Movement();
 	deadCount = 0;
-	collider = Collisions();
-	alienShip = shared_ptr<AlienSpaceShip>(new AlienSpaceShip());
+	collider = Collide();
+	alienShip = shared_ptr<Enemy>(new Enemy());
 
 	lives = 3;
 	game_over = false;
@@ -49,7 +49,7 @@ Level::Level()
 	}
 	for (int i = 0; i < lives; i++)
 	{
-		player_lives.push_back(shared_ptr<GameObject>(new Life(i)));
+		player_lives.push_back(shared_ptr<GameObject>(new Health(i)));
 	}
 }
 
@@ -66,14 +66,14 @@ Level::Level(int numberOfAsteroids, shared_ptr<PlayerSpaceShip> player, int live
 		numberOfAsteroids = MAX_ASTEROIDS;
 
 	playerShip = player;
-	collider = Collisions();
+	collider = Collide();
 	mover = Movement();
 	deadCount = 0;
 	count = 0;
 
 	done = false;
 	current = numberOfAsteroids;
-	alienShip = shared_ptr<AlienSpaceShip>(new AlienSpaceShip(false));
+	alienShip = shared_ptr<Enemy>(new Enemy(false));
 
 	
 
@@ -83,7 +83,7 @@ Level::Level(int numberOfAsteroids, shared_ptr<PlayerSpaceShip> player, int live
 	}
 	for (int i = 0; i < lives; i++)
 	{
-		player_lives.push_back(shared_ptr<GameObject>(new Life(i)));
+		player_lives.push_back(shared_ptr<GameObject>(new Health(i)));
 	}
 
 }
@@ -119,7 +119,7 @@ void Level::draw()
 		toDraw->draw();
 	}
 
-	for each(shared_ptr<Explosion> toDraw in explosions)
+	for each(shared_ptr<Explode> toDraw in Explodes)
 	{
 		toDraw->draw();
 	}
@@ -196,7 +196,7 @@ void Level::update()
 	list<shared_ptr<Shot>> shotsTemp = pshots;
 	list<shared_ptr<GameObject>> objectsTemp;
 
-	if (objects.size() > 0 || explosions.size() > 0 || alienShip->alive)
+	if (objects.size() > 0 || Explodes.size() > 0 || alienShip->alive)
 	{
 
 		objectsTemp = objects;
@@ -263,7 +263,7 @@ void Level::update()
 					if (collider.shotAndAsteroid(asteroid, deadly))
 					{
 						
-						explosions.push_back(shared_ptr<ShotExplosion>(new ShotExplosion(asteroid->x, asteroid->y, deadly->velocityX / 2, deadly->velocityY / 2, 107 / 255.0, 34 / 255.0, 34 / 255.0)));
+						Explodes.push_back(shared_ptr<ShotExplode>(new ShotExplode(asteroid->x, asteroid->y, deadly->velocityX / 2, deadly->velocityY / 2, 107 / 255.0, 34 / 255.0, 34 / 255.0)));
 
 						
 						list<shared_ptr<GameObject>> toAdd = asteroid->split(deadly->velocityX, deadly->velocityY);
@@ -274,7 +274,7 @@ void Level::update()
 
 						
 						if (score.addScore(object->points))
-							player_lives.push_back(shared_ptr<GameObject>(new Life(player_lives.size())));
+							player_lives.push_back(shared_ptr<GameObject>(new Health(player_lives.size())));
 
 						
 						objects.remove(object);
@@ -294,7 +294,7 @@ void Level::update()
 					if (collider.shotAndAsteroid(asteroid, deadly))
 					{
 						
-						explosions.push_back(shared_ptr<ShotExplosion>(new ShotExplosion(asteroid->x, asteroid->y, deadly->velocityX, deadly->velocityY, 107 / 255.0, 34 / 255.0, 34 / 255.0)));
+						Explodes.push_back(shared_ptr<ShotExplode>(new ShotExplode(asteroid->x, asteroid->y, deadly->velocityX, deadly->velocityY, 107 / 255.0, 34 / 255.0, 34 / 255.0)));
 
 						
 						list<shared_ptr<GameObject>> toAdd = asteroid->split(deadly->velocityX, deadly->velocityY);
@@ -325,11 +325,11 @@ void Level::update()
 					{
 						
 						playerShip->alive = false;
-						removeLife();
+						removeHealth();
 
 						
-						explosions.push_back(shared_ptr<Explosion>(new Explosion(playerShip->x, playerShip->y, asteroid->velocityX / 2, asteroid->velocityY / 2, 63 / 255.0f, 69 / 255.0f, 101 / 255.0f)));
-						explosions.push_back(shared_ptr<Explosion>(new Explosion(asteroid->x, asteroid->y, playerShip->velocityX / 2, playerShip->velocityY / 2, 107 / 255.0, 34 / 255.0, 34 / 255.0)));
+						Explodes.push_back(shared_ptr<Explode>(new Explode(playerShip->x, playerShip->y, asteroid->velocityX / 2, asteroid->velocityY / 2, 63 / 255.0f, 69 / 255.0f, 101 / 255.0f)));
+						Explodes.push_back(shared_ptr<Explode>(new Explode(asteroid->x, asteroid->y, playerShip->velocityX / 2, playerShip->velocityY / 2, 107 / 255.0, 34 / 255.0, 34 / 255.0)));
 
 						
 						float dx = playerShip->x - asteroid->x;
@@ -367,8 +367,8 @@ void Level::update()
 						alienShip->dead = true;
 
 						
-						explosions.push_back(shared_ptr<Explosion>(new Explosion(alienShip->x, alienShip->y, asteroid->velocityX / 2, asteroid->velocityY / 2, 0.329412, 0.329412, 0.329412)));
-						explosions.push_back(shared_ptr<Explosion>(new Explosion(asteroid->x, asteroid->y, alienShip->velocityX / 2, alienShip->velocityY / 2, 107 / 255.0, 34 / 255.0, 34 / 255.0)));
+						Explodes.push_back(shared_ptr<Explode>(new Explode(alienShip->x, alienShip->y, asteroid->velocityX / 2, asteroid->velocityY / 2, 0.329412, 0.329412, 0.329412)));
+						Explodes.push_back(shared_ptr<Explode>(new Explode(asteroid->x, asteroid->y, alienShip->velocityX / 2, alienShip->velocityY / 2, 107 / 255.0, 34 / 255.0, 34 / 255.0)));
 
 
 						
@@ -414,9 +414,9 @@ void Level::update()
 						alienShip->alive = false;
 						alienShip->dead = true;
 						if (score.addScore(alienShip->points))
-							player_lives.push_back(shared_ptr<GameObject>(new Life(player_lives.size())));
+							player_lives.push_back(shared_ptr<GameObject>(new Health(player_lives.size())));
 
-						explosions.push_back(shared_ptr<ShotExplosion>(new ShotExplosion(alienShip->x, alienShip->y, deadly->velocityX, deadly->velocityY, 0.329412, 0.329412, 0.329412)));
+						Explodes.push_back(shared_ptr<ShotExplode>(new ShotExplode(alienShip->x, alienShip->y, deadly->velocityX, deadly->velocityY, 0.329412, 0.329412, 0.329412)));
 
 						
 						pshots.remove(deadly);
@@ -447,10 +447,10 @@ void Level::update()
 						
 						playerShip->alive = false;
 						pshots.remove(deadly);
-						removeLife();
+						removeHealth();
 
 						
-						explosions.push_back(shared_ptr<ShotExplosion>(new ShotExplosion(playerShip->x, playerShip->y, deadly->velocityX, deadly->velocityY, 63 / 255.0f, 69 / 255.0f, 101 / 255.0f)));
+						Explodes.push_back(shared_ptr<ShotExplode>(new ShotExplode(playerShip->x, playerShip->y, deadly->velocityX, deadly->velocityY, 63 / 255.0f, 69 / 255.0f, 101 / 255.0f)));
 
 
 						
@@ -470,11 +470,11 @@ void Level::update()
 			{
 				
 				playerShip->alive = false;
-				removeLife();
+				removeHealth();
 
 				
-				explosions.push_back(shared_ptr<Explosion>(new Explosion(playerShip->x, playerShip->y, alienShip->velocityX / 2, alienShip->velocityY / 2, 63 / 255.0f, 69 / 255.0f, 101 / 255.0f)));
-				explosions.push_back(shared_ptr<Explosion>(new Explosion(alienShip->x, alienShip->y, alienShip->velocityX / 2, playerShip->velocityY / 2, 0.329412, 0.329412, 0.329412)));
+				Explodes.push_back(shared_ptr<Explode>(new Explode(playerShip->x, playerShip->y, alienShip->velocityX / 2, alienShip->velocityY / 2, 63 / 255.0f, 69 / 255.0f, 101 / 255.0f)));
+				Explodes.push_back(shared_ptr<Explode>(new Explode(alienShip->x, alienShip->y, alienShip->velocityX / 2, playerShip->velocityY / 2, 0.329412, 0.329412, 0.329412)));
 
 
 				
@@ -502,7 +502,7 @@ void Level::update()
 			
 			
 			
-			if (toUpdate->lifeCount > MAX_SHOT_LIFE)
+			if (toUpdate->HealthCount > MAX_SHOT_Health)
 				pshots.pop_front();
 			else
 			{
@@ -510,21 +510,21 @@ void Level::update()
 				mover.move(toUpdate);
 
 				
-				toUpdate->lifeCount++;
+				toUpdate->HealthCount++;
 			}
 		}
 
-		list<shared_ptr<Explosion>> explosionsTemp = explosions;
+		list<shared_ptr<Explode>> ExplodesTemp = Explodes;
 
-		for each(shared_ptr<Explosion> toUpdate in explosionsTemp)
+		for each(shared_ptr<Explode> toUpdate in ExplodesTemp)
 		{
 			
 			
 			
-			if (toUpdate->life > MAX_EXPLOSION_LIFE)
-				explosions.pop_front();
+			if (toUpdate->Health > MAX_Explode_Health)
+				Explodes.pop_front();
 			else
-				toUpdate->life++;
+				toUpdate->Health++;
 
 		}
 
@@ -535,7 +535,7 @@ void Level::update()
 			
 			
 			
-			if (toUpdate->lifeCount > MAX_SHOT_LIFE)
+			if (toUpdate->HealthCount > MAX_SHOT_Health)
 				ashots.pop_front();
 			else
 			{
@@ -543,7 +543,7 @@ void Level::update()
 				mover.move(toUpdate);
 
 				
-				toUpdate->lifeCount++;
+				toUpdate->HealthCount++;
 			}
 		}
 		if (alienShip->alive && ashots.size() == 0)
@@ -552,7 +552,7 @@ void Level::update()
 		}
 
 		if (alienShip->dead && !alienShip->is_small)
-			alienShip = shared_ptr<AlienSpaceShip>(new AlienSpaceShip(true));
+			alienShip = shared_ptr<Enemy>(new Enemy(true));
 		
 		alienShip->update(count++, score.getScore(), objects.size());
 
@@ -584,7 +584,7 @@ void Level::makeShot()
 	}
 }
 
-void Level::removeLife()
+void Level::removeHealth()
 {
 	player_lives.pop_back();
 	if (player_lives.size() == 0)
@@ -613,7 +613,7 @@ void Level::makeAlienShot()
 		shared_ptr<PlayerSpaceShip> toShoot = playerShip;
 
 		
-		for (int i = 0; i < MAX_SHOT_LIFE; i++)
+		for (int i = 0; i < MAX_SHOT_Health; i++)
 		{
 			float x = toShoot->x + toShoot->velocityX*i;
 			float y = toShoot->y + toShoot->velocityY*i;
@@ -661,7 +661,7 @@ void Level::makeAlienShot()
 		dirY = (toShoot->y + toShoot->velocityY) - (alienShip->y + alienShip->velocityY);
 
 		
-		for (int i = 1; i <= MAX_SHOT_LIFE; i++)
+		for (int i = 1; i <= MAX_SHOT_Health; i++)
 		{
 			float x = toShoot->x + toShoot->velocityX*i;
 			float y = toShoot->y + toShoot->velocityY*i;

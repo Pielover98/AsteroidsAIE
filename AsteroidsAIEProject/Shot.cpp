@@ -13,7 +13,7 @@
 #include <GL/gl.h>
 #include <GL/glu.h>
 #include <freeglut.h>
-#include "GlobalAsteroidVariables.h"
+#include "GlobalVariables.h"
 
 using namespace std;
 
@@ -42,7 +42,7 @@ Shot::Shot(float X, float Y, float xVel, float yVel, float r)
 	angularVelocityZ = 0.0f;
 
 	
-	lifeCount = 0;
+	HealthCount = 0;
 
 }
 

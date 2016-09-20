@@ -1,14 +1,14 @@
 #pragma once
-#ifndef ALIENSPACESHIP_H
-#define ALIENSPACESHIP_H
+#ifndef Enemy_H
+#define Enemy_H
 #include "GameObject.h"
 
-class AlienSpaceShip : public GameObject
+class Enemy : public GameObject
 {
 
 public:
-	AlienSpaceShip();
-	AlienSpaceShip(bool is_small_now);
+	Enemy();
+	Enemy(bool is_small_now);
 	void update(long count, long points, int asteroids);
 	void draw();
 	bool alive;

@@ -9,7 +9,7 @@ class Shot : public GameObject
 public:
 	Shot(float x, float y, float xVel, float yVel, float r);
 	void draw();
-	int lifeCount;
+	int HealthCount;
 	float size;
 };
 

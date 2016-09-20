@@ -6,7 +6,7 @@
 #include <stream.h>
 #endif
 
-#include "GlobalAsteroidVariables.h"
+#include "GlobalVariables.h"
 #include <iostream>
 #include <math.h>
 #include <string.h>

@@ -1,5 +1,5 @@
-#include "ShotExplosion.h"
-#include "Explosion.h"
+#include "ShotExplode.h"
+#include "Explode.h"
 
 #ifdef _M_IX86
 #include <windows.h>
@@ -10,7 +10,7 @@
 #include <GL/gl.h>
 #include <GL/glu.h>
 #include <freeglut.h>
-#include "GlobalAsteroidVariables.h"
+#include "GlobalVariables.h"
 #include "Movement.h"
 #include "ShotParticle.h"
 #include <list>
@@ -19,7 +19,7 @@
 
 using namespace std;
 
-ShotExplosion::ShotExplosion(float X, float Y, float xVel, float yVel, float red, float green, float blue) : Explosion(X, Y, xVel, yVel, red, green, blue)
+ShotExplode::ShotExplode(float X, float Y, float xVel, float yVel, float red, float green, float blue) : Explode(X, Y, xVel, yVel, red, green, blue)
 {
 	angle = 0.0f;
 	angleX = 0.0f;
@@ -35,7 +35,7 @@ ShotExplosion::ShotExplosion(float X, float Y, float xVel, float yVel, float red
 	velocityX = 0;
 	velocityY = 0;
 
-	life = 0;
+	Health = 0;
 
 	for (int i = 0; i < SHOT_PARTICLE_COUNT; i++)
 	{
@@ -43,18 +43,18 @@ ShotExplosion::ShotExplosion(float X, float Y, float xVel, float yVel, float red
 	}
 }
 
-void ShotExplosion::draw()
+void ShotExplode::draw()
 {
 	Movement mover = Movement();
 
-	if (life < MAX_SHOT_EXPLOSION_LIFE)
+	if (Health < MAX_SHOT_Explode_Health)
 	{
 		for each(shared_ptr<GameObject> part in particles)
 		{
-			part->count = life;
+			part->count = Health;
 			glPushMatrix();
 
-			if (life > MAX_SHOT_EXPLOSION_LIFE / 3)
+			if (Health > MAX_SHOT_Explode_Health / 3)
 			{
 				glEnable(GL_BLEND);
 				glBlendFunc(GL_SRC_COLOR, GL_ONE_MINUS_SRC_ALPHA);
@@ -75,6 +75,6 @@ void ShotExplosion::draw()
 
 		}
 	}
-	Explosion::draw();
+	Explode::draw();
 
 }

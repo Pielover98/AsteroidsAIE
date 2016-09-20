@@ -1,4 +1,4 @@
-#include "Life.h"
+#include "Health.h"
 
 #ifdef _M_IX86
 #include <windows.h>
@@ -6,7 +6,7 @@
 #include <stream.h>
 #endif
 
-#include "GlobalAsteroidVariables.h"
+#include "GlobalVariables.h"
 #include <math.h>
 #include <string.h>
 #include <GL/gl.h>
@@ -14,7 +14,7 @@
 #include <freeglut.h>
 #include "GameObject.h"
 
-Life::Life(int pos)
+Health::Health(int pos)
 {
 
 	
@@ -41,7 +41,7 @@ Life::Life(int pos)
 	init();
 }
 
-void Life::init()
+void Health::init()
 {
 	GLfloat material[] = { 63 / 255.0, 69 / 255.0, 101 / 255.0, 0 };
 	GLfloat shine[] = { 2 };
@@ -54,16 +54,16 @@ void Life::init()
 	glMaterialfv(GL_FRONT, GL_SHININESS, shine);
 	glPushMatrix();
 	glRotatef(90.0, 1.0, 0.0, 0.0);
-	glutSolidCone(LIFE_SIDE, LIFE_FRONT, 12, 4);
+	glutSolidCone(Health_SIDE, Health_FRONT, 12, 4);
 	glPushMatrix();
 	glRotatef(180.0, 1.0, 0.0, 0.0);
-	glutSolidCone(LIFE_SIDE, LIFE_BACK, 12, 2);
+	glutSolidCone(Health_SIDE, Health_BACK, 12, 2);
 	glPopMatrix();
 	glPopMatrix();
 	glEndList();
 }
 
-void Life::draw()
+void Health::draw()
 {
 
 	glPushMatrix();

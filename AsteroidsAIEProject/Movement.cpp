@@ -1,7 +1,7 @@
 #include "Movement.h"
 #include "GameObject.h"
-#include "GlobalAsteroidVariables.h"
-#include "AlienSpaceShip.h"
+#include "GlobalVariables.h"
+#include "Enemy.h"
 #include "PlayerSpaceShip.h"
 #include <memory>
 #include "math.h"
@@ -132,7 +132,7 @@ void Movement::move(shared_ptr<PlayerSpaceShip> object)
 		object->y = HEIGHT - 0.1f;
 }
 
-void Movement::move(shared_ptr<AlienSpaceShip> object)
+void Movement::move(shared_ptr<Enemy> object)
 {
 	object->x += object->velocityX;
 	object->y += object->velocityY;

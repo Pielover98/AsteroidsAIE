@@ -1,15 +1,15 @@
 #pragma once
-#ifndef INTRO_H
-#define INTRO_H
+#ifndef IntroScreen_H
+#define IntroScreen_H
 #include "GameObject.h"
 #include "BackGround.h"
 
 using namespace std;
 
-class Intro : public BackGround
+class IntroScreen : public BackGround
 {
 public:
-	Intro();
+	IntroScreen();
 	void draw();
 	void update();
 	void makeShot();

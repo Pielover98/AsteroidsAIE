@@ -4,8 +4,8 @@
 #include <stream.h>
 #endif
 
-#include "Collisions.h"
-#include "GlobalAsteroidVariables.h"
+#include "Collide.h"
+#include "GlobalVariables.h"
 #include <math.h>
 #include <iostream>
 #include <memory>
@@ -14,11 +14,11 @@
 
 using namespace std;
 
-Collisions::Collisions()
+Collide::Collide()
 {
 }
 
-bool Collisions::shotAndAsteroid(shared_ptr<Asteroid> asteroid, shared_ptr<Shot> shot)
+bool Collide::shotAndAsteroid(shared_ptr<Asteroid> asteroid, shared_ptr<Shot> shot)
 {
 	
 	shared_ptr<GameObject> obj = dynamic_pointer_cast<GameObject>(asteroid);
@@ -40,7 +40,7 @@ bool Collisions::shotAndAsteroid(shared_ptr<Asteroid> asteroid, shared_ptr<Shot>
 	return false;
 }
 
-bool Collisions::shipAndAsteroid(shared_ptr<Asteroid> asteroid, shared_ptr<PlayerSpaceShip> playerShip)
+bool Collide::shipAndAsteroid(shared_ptr<Asteroid> asteroid, shared_ptr<PlayerSpaceShip> playerShip)
 {
 
 	
@@ -91,7 +91,7 @@ bool Collisions::shipAndAsteroid(shared_ptr<Asteroid> asteroid, shared_ptr<Playe
 	return false;
 }
 
-bool Collisions::shipAndAsteroid(shared_ptr<Asteroid> asteroid, shared_ptr<AlienSpaceShip> alienShip)
+bool Collide::shipAndAsteroid(shared_ptr<Asteroid> asteroid, shared_ptr<Enemy> alienShip)
 {
 
 	
@@ -130,7 +130,7 @@ bool Collisions::shipAndAsteroid(shared_ptr<Asteroid> asteroid, shared_ptr<Alien
 	return false;
 }
 
-float Collisions::dist(float xOne, float xTwo, float yOne, float yTwo)
+float Collide::dist(float xOne, float xTwo, float yOne, float yTwo)
 {
 	float dx = xOne - xTwo;
 	float dy = yOne - yTwo;
@@ -138,14 +138,14 @@ float Collisions::dist(float xOne, float xTwo, float yOne, float yTwo)
 	return sqrt(dx*dx + dy*dy);
 }
 
-int Collisions::sgn(float toCheck)
+int Collide::sgn(float toCheck)
 {
 	if (toCheck < 0)
 		return -1;
 	return 1;
 }
 
-float Collisions::smallIntersectX(float dx, float dy, float d, float D, float radius)
+float Collide::smallIntersectX(float dx, float dy, float d, float D, float radius)
 {
 	if (d == 0)
 		return 0;
@@ -153,7 +153,7 @@ float Collisions::smallIntersectX(float dx, float dy, float d, float D, float ra
 	return (D*dy - sgn(dy)*dx*sqrt(radius*radius*d - D*D)) / d;
 }
 
-float Collisions::smallIntersectY(float dx, float dy, float d, float D, float radius)
+float Collide::smallIntersectY(float dx, float dy, float d, float D, float radius)
 {
 	if (d == 0)
 		return 0;
@@ -161,7 +161,7 @@ float Collisions::smallIntersectY(float dx, float dy, float d, float D, float ra
 	return (-D*dx - abs(dy)*sqrt(radius*radius*d - D*D)) / d;
 }
 
-float Collisions::largeIntersectX(float dx, float dy, float d, float D, float radius)
+float Collide::largeIntersectX(float dx, float dy, float d, float D, float radius)
 {
 	if (d == 0)
 		return 0;
@@ -169,7 +169,7 @@ float Collisions::largeIntersectX(float dx, float dy, float d, float D, float ra
 	return (D*dy + sgn(dy)*dx*sqrt(radius*radius*d - D*D)) / d;
 }
 
-float Collisions::largeIntersectY(float dx, float dy, float d, float D, float radius)
+float Collide::largeIntersectY(float dx, float dy, float d, float D, float radius)
 {
 	if (d == 0)
 		return 0;
@@ -177,7 +177,7 @@ float Collisions::largeIntersectY(float dx, float dy, float d, float D, float ra
 	return (-D*dx + abs(dy)*sqrt(radius*radius*d - D*D)) / d;
 }
 
-bool Collisions::intersect(float xOne, float xTwo, float yOne, float yTwo, float xCenter, float yCenter, float radius)
+bool Collide::intersect(float xOne, float xTwo, float yOne, float yTwo, float xCenter, float yCenter, float radius)
 {
 	float delta = 0;
 
@@ -230,7 +230,7 @@ bool Collisions::intersect(float xOne, float xTwo, float yOne, float yTwo, float
 	return false;
 }
 
-bool Collisions::lineLineIntersection(float xOne, float yOne, float xTwo, float yTwo, float xThree, float yThree, float xFour, float yFour)
+bool Collide::lineLineIntersection(float xOne, float yOne, float xTwo, float yTwo, float xThree, float yThree, float xFour, float yFour)
 {
 	
 	float xTwoOne = xTwo - xOne;
@@ -254,7 +254,7 @@ bool Collisions::lineLineIntersection(float xOne, float yOne, float xTwo, float 
 	return false;
 }
 
-bool Collisions::shotAndShip(shared_ptr<Shot> shot, shared_ptr<AlienSpaceShip> alienShip)
+bool Collide::shotAndShip(shared_ptr<Shot> shot, shared_ptr<Enemy> alienShip)
 {
 	
 	float coords[8];
@@ -292,7 +292,7 @@ bool Collisions::shotAndShip(shared_ptr<Shot> shot, shared_ptr<AlienSpaceShip> a
 	return false;
 }
 
-bool Collisions::shotAndShip(shared_ptr<Shot> shot, shared_ptr<PlayerSpaceShip> playerShip)
+bool Collide::shotAndShip(shared_ptr<Shot> shot, shared_ptr<PlayerSpaceShip> playerShip)
 {
 	
 	float coords[8];
@@ -343,7 +343,7 @@ bool Collisions::shotAndShip(shared_ptr<Shot> shot, shared_ptr<PlayerSpaceShip> 
 	return false;
 }
 
-bool Collisions::shipAndShip(shared_ptr<PlayerSpaceShip> playerShip, shared_ptr<AlienSpaceShip> alienShip)
+bool Collide::shipAndShip(shared_ptr<PlayerSpaceShip> playerShip, shared_ptr<Enemy> alienShip)
 {
 	
 	float pCoords[8];

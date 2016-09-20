@@ -1,11 +1,11 @@
-#ifndef GLOBAL_ASTEROID_VARIABLES
-#define GLOBAL_ASTEROID_VARIABLES
+#ifndef GLOBAL_VARIABLES
+#define GLOBAL_VARIABLES
 
 #define HEIGHT 17
 #define WIDTH 17
 
 #define MAX_SHOTS 4
-#define MAX_SHOT_LIFE 55
+#define MAX_SHOT_Health 55
 #define PI 3.1415926
 #define PI_OVER_TWO 1.5707963f
 #define CIRCLE 360.0f
@@ -28,14 +28,14 @@
 #define SHIP_SIDE .4f
 #define SHIP_BACK .5f
 
-#define LIFE_FRONT .5f
-#define LIFE_SIDE .2f
-#define LIFE_BACK .25f
+#define Health_FRONT .5f
+#define Health_SIDE .2f
+#define Health_BACK .25f
 
 #define COLLISION_RADIUS 2
 
 #define PARTICLE_COUNT 100
-#define MAX_EXPLOSION_LIFE 80
+#define MAX_Explode_Health 80
 #define PARTICLE_VELOCITY_RANGE 0.1f
 
 #define SHOT_RADIUS 0.1f
@@ -53,7 +53,7 @@
 
 #define BONUS 2000
 #define SHOT_PARTICLE_COUNT 200
-#define MAX_SHOT_EXPLOSION_LIFE 70
+#define MAX_SHOT_Explode_Health 70
 #define OUTER_MIN_PARTICLE_VELOCITY 0.11f
 #define INNER_MIN_PARTICLE_VELOCITY 0.11f
 #define OUTER_MAX_PARTICLE_VELOCITY 0.15f
