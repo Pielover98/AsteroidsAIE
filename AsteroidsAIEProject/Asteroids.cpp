@@ -6,7 +6,7 @@
 
 #include "Asteroid.h"
 #include "Enemy.h"
-#include "PlayerSpaceShip.h"
+#include "Player.h"
 #include "GameObject.h"
 #include "GlobalVariables.h"
 #include "BackGround.h"
@@ -32,7 +32,7 @@ void  handle_rotation(int);
 void  handle_mouse(int, int, int, int);
 
 shared_ptr<BackGround> level;
-shared_ptr<PlayerSpaceShip> player;
+shared_ptr<Player> player;
 
 
 int    btn[3] = { 0 };
@@ -87,7 +87,7 @@ void handle_menu(int ID)
 		break;
 	case 1:
 	{
-		player = shared_ptr<PlayerSpaceShip>(new PlayerSpaceShip());
+		player = shared_ptr<Player>(new Player());
 		unsigned int toTransfer = level->stars->getName();
 		level = shared_ptr<Level>(new Level((rand() % MAX_NEW_ASTEROIDS) + 1, player, 3, 0));
 		level->stars = shared_ptr<Stars>(new Stars(toTransfer));
@@ -192,7 +192,7 @@ void main(int argc, char *argv[])
 
 
 	
-	player = shared_ptr<PlayerSpaceShip>(new PlayerSpaceShip());
+	player = shared_ptr<Player>(new Player());
 	level = shared_ptr<IntroScreen>(new IntroScreen());
 
 	glutDisplayFunc(display_obj);	

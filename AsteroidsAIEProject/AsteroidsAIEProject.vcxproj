@@ -168,7 +168,7 @@
     <ClInclude Include="Health.h" />
     <ClInclude Include="Movement.h" />
     <ClInclude Include="Particle.h" />
-    <ClInclude Include="PlayerSpaceShip.h" />
+    <ClInclude Include="Player.h" />
     <ClInclude Include="Score.h" />
     <ClInclude Include="Shot.h" />
     <ClInclude Include="ShotExplode.h" />
@@ -186,7 +186,7 @@
     <ClCompile Include="Health.cpp" />
     <ClCompile Include="Movement.cpp" />
     <ClCompile Include="Particle.cpp" />
-    <ClCompile Include="PlayerSpaceShip.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="Score.cpp" />
     <ClCompile Include="Shot.cpp" />
     <ClCompile Include="ShotExplode.cpp" />

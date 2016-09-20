@@ -3,7 +3,7 @@
 #define LEVEL_H
 #include "GameObject.h"
 #include "Collide.h"
-#include "PlayerSpaceShip.h"
+#include "Player.h"
 #include "Explode.h"
 #include "Enemy.h"
 #include "BackGround.h"
@@ -20,7 +20,7 @@ class Level : public BackGround
 {
 public:
 	Level();
-	Level(int n, shared_ptr<PlayerSpaceShip> player, int lives_to_start, long score_to_start);
+	Level(int n, shared_ptr<Player> player, int lives_to_start, long score_to_start);
 	~Level();
 	void draw();
 	void update();
@@ -31,7 +31,7 @@ private:
 	list<shared_ptr<Shot>> pshots;
 	list<shared_ptr<Shot>> ashots;
 	list<shared_ptr<Explode>> Explodes;
-	shared_ptr<PlayerSpaceShip> playerShip;
+	shared_ptr<Player> playerShip;
 	shared_ptr<Enemy> alienShip;
 	Movement mover;
 	Collide collider;

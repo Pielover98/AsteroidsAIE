@@ -2,7 +2,7 @@
 #ifndef MOVEMENT_H
 #define MOVEMENT_H
 #include "GameObject.h"
-#include "PlayerSpaceShip.h"
+#include "Player.h"
 #include "Enemy.h"
 #include <memory>
 
@@ -12,11 +12,11 @@ class Movement
 {
 public:
 	void clip(shared_ptr<GameObject> object);
-	void clip(shared_ptr<PlayerSpaceShip> object);
+	void clip(shared_ptr<Player> object);
 	void rotate(shared_ptr<GameObject> object);
-	void rotate(shared_ptr<PlayerSpaceShip> object);
+	void rotate(shared_ptr<Player> object);
 	void move(shared_ptr<GameObject> object);
-	void move(shared_ptr<PlayerSpaceShip> object);
+	void move(shared_ptr<Player> object);
 	void move(shared_ptr<Enemy> object);
 };
 

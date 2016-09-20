@@ -1,13 +1,13 @@
 #pragma once
-#ifndef PLAYERSPACESHIP_H
-#define PLAYERSPACESHIP_H
+#ifndef Player_H
+#define Player_H
 #include "GameObject.h"
 
-class PlayerSpaceShip: public GameObject
+class Player: public GameObject
 {
 	
 public:
-	PlayerSpaceShip();
+	Player();
 	void draw();
 	bool moving;
 	bool rotating;

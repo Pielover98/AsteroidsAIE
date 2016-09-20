@@ -40,7 +40,7 @@ bool Collide::shotAndAsteroid(shared_ptr<Asteroid> asteroid, shared_ptr<Shot> sh
 	return false;
 }
 
-bool Collide::shipAndAsteroid(shared_ptr<Asteroid> asteroid, shared_ptr<PlayerSpaceShip> playerShip)
+bool Collide::shipAndAsteroid(shared_ptr<Asteroid> asteroid, shared_ptr<Player> playerShip)
 {
 
 	
@@ -292,7 +292,7 @@ bool Collide::shotAndShip(shared_ptr<Shot> shot, shared_ptr<Enemy> alienShip)
 	return false;
 }
 
-bool Collide::shotAndShip(shared_ptr<Shot> shot, shared_ptr<PlayerSpaceShip> playerShip)
+bool Collide::shotAndShip(shared_ptr<Shot> shot, shared_ptr<Player> playerShip)
 {
 	
 	float coords[8];
@@ -343,7 +343,7 @@ bool Collide::shotAndShip(shared_ptr<Shot> shot, shared_ptr<PlayerSpaceShip> pla
 	return false;
 }
 
-bool Collide::shipAndShip(shared_ptr<PlayerSpaceShip> playerShip, shared_ptr<Enemy> alienShip)
+bool Collide::shipAndShip(shared_ptr<Player> playerShip, shared_ptr<Enemy> alienShip)
 {
 	
 	float pCoords[8];

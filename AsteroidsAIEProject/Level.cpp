@@ -8,7 +8,7 @@
 #include "ShotExplode.h"
 #include "Asteroid.h"
 #include "Enemy.h"
-#include "PlayerSpaceShip.h"
+#include "Player.h"
 #include "GameObject.h"
 #include "Movement.h"
 #include "Collide.h"
@@ -53,7 +53,7 @@ Level::Level()
 	}
 }
 
-Level::Level(int numberOfAsteroids, shared_ptr<PlayerSpaceShip> player, int lives_to_start, long score_to_start)
+Level::Level(int numberOfAsteroids, shared_ptr<Player> player, int lives_to_start, long score_to_start)
 {
 
 	lives = lives_to_start;
@@ -610,7 +610,7 @@ void Level::makeAlienShot()
 		dirX = playerShip->x - (alienShip->x + alienShip->velocityX);
 		dirY = playerShip->y - (alienShip->y + alienShip->velocityY);
 
-		shared_ptr<PlayerSpaceShip> toShoot = playerShip;
+		shared_ptr<Player> toShoot = playerShip;
 
 		
 		for (int i = 0; i < MAX_SHOT_Health; i++)

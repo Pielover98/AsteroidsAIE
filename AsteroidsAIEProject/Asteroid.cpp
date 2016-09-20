@@ -272,7 +272,7 @@ void Asteroid::init()
 void Asteroid::init_arrays()
 {
 
-	
+	// This section was taken and modified from http://prideout.net/blog/?p=48
 
 	int tempFaces[] = { 1, 13, 21,
 		2, 15, 27,
@@ -759,7 +759,7 @@ void Asteroid::init_arrays()
 		0.447209, 0.723612, -0.525728 };
 
 	
-
+		// end of section from http://prideout.net/blog/?p=48
 
 	
 	for (int i = 0; i < sizeof(tempVerts) / sizeof(tempVerts[0]); i++)

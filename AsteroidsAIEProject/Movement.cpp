@@ -2,7 +2,7 @@
 #include "GameObject.h"
 #include "GlobalVariables.h"
 #include "Enemy.h"
-#include "PlayerSpaceShip.h"
+#include "Player.h"
 #include <memory>
 #include "math.h"
 #include <iostream>
@@ -18,7 +18,7 @@ void Movement::clip(shared_ptr<GameObject> object)
 		object->angle = object->angle + CIRCLE;
 }
 
-void Movement::clip(shared_ptr<PlayerSpaceShip> object)
+void Movement::clip(shared_ptr<Player> object)
 {
 	
 	if (object->angle > CIRCLE)
@@ -39,7 +39,7 @@ void Movement::rotate(shared_ptr<GameObject> object)
 	clip(object);
 }
 
-void Movement::rotate(shared_ptr<PlayerSpaceShip> object)
+void Movement::rotate(shared_ptr<Player> object)
 {
 	
 	object->angleX += object->angularVelocityX;
@@ -69,7 +69,7 @@ void Movement::move(shared_ptr<GameObject> object)
 		object->y = HEIGHT - 0.1f;
 }
 
-void Movement::move(shared_ptr<PlayerSpaceShip> object)
+void Movement::move(shared_ptr<Player> object)
 {
 	
 	double angle = object->angle*PI / HALF_CIRCLE;

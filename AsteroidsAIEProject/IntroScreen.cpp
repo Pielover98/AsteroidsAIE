@@ -71,8 +71,7 @@ void IntroScreen::draw()
 
 	glPopMatrix();
 
-	value = "Right click to start a new game or quit.";
-
+	value = "Right click to start a new game or quit. Controls with X, Z, Left, Right";
 	
 	length = value.size();
 	size = 0;

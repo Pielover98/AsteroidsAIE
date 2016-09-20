@@ -4,7 +4,7 @@
 
 #include "Enemy.h"
 #include "Asteroid.h"
-#include "PlayerSpaceShip.h"
+#include "Player.h"
 #include "Shot.h"
 #include <memory>
 
@@ -15,11 +15,11 @@ class Collide
 public:
 	Collide();
 	bool shotAndAsteroid(shared_ptr<Asteroid> asteroid, shared_ptr<Shot> shot);
-	bool shipAndAsteroid(shared_ptr<Asteroid> asteroid, shared_ptr<PlayerSpaceShip> playerShip);
+	bool shipAndAsteroid(shared_ptr<Asteroid> asteroid, shared_ptr<Player> playerShip);
 	bool shipAndAsteroid(shared_ptr<Asteroid> asteroid, shared_ptr<Enemy> alienShip);
-	bool shotAndShip(shared_ptr<Shot> shot, shared_ptr<PlayerSpaceShip> ship);
+	bool shotAndShip(shared_ptr<Shot> shot, shared_ptr<Player> ship);
 	bool shotAndShip(shared_ptr<Shot> shot, shared_ptr<Enemy> ship);
-	bool shipAndShip(shared_ptr<PlayerSpaceShip> player, shared_ptr<Enemy> alien);
+	bool shipAndShip(shared_ptr<Player> player, shared_ptr<Enemy> alien);
 	float dist(float xOne, float xTwo, float yOne, float yTwo);
 private:
 	bool intersect(float xOne, float xTwo, float yOne, float yTwo, float xCenter, float yCenter, float radius);

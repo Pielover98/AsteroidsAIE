@@ -1,4 +1,4 @@
-#include "PlayerSpaceShip.h"
+#include "Player.h"
 
 #ifdef _M_IX86
 #include <windows.h>
@@ -17,7 +17,7 @@
 
 using namespace std;
 
-PlayerSpaceShip::PlayerSpaceShip()
+Player::Player()
 {
 
 	
@@ -49,7 +49,7 @@ PlayerSpaceShip::PlayerSpaceShip()
 	init();
 }
 
-void PlayerSpaceShip::init()
+void Player::init()
 {
 
 	name = glGenLists(1);
@@ -67,7 +67,7 @@ void PlayerSpaceShip::init()
 	glEndList();
 }
 
-void PlayerSpaceShip::draw()
+void Player::draw()
 {
 	if (alive)
 	{
