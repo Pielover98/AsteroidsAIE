@@ -1,0 +1,1 @@
+This is a modern remake of the atari game Asteroids. It was made using opengl through freeglut and c++ for an assesment at AIE
