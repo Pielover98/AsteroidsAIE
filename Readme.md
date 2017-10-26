@@ -1,8 +1,6 @@
-This is a modern remake of the atari game Asteroids. It was made using opengl using freeglut and c++ for an assesment at AIE
+# Opengl Asteroids Remake 
 
-Made by Xavier Melton
+## This is a modern remake of the atari game Asteroids. It was made using opengl with freglut and C++ for an assesment at AIE
 
-xavier.melton@students.aie.edu.au
-
-In order to run the project using the debugger in visual studios you may need to change the project from x64 to x86
+## In order to run the project in visual studios you need to change the project form  x64 to x86 once opened
 
